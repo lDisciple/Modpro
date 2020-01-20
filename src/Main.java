@@ -1,0 +1,95 @@
+import java.util.LinkedList; 
+import java.util.Scanner; 
+
+/**
+ * Main class file
+ */
+public   class  Main {
+	
+	private static Scanner input = new Scanner(System.in);
+
+	
+	private static String[] mainMenuItems = new String[getMainMenuItemCount()];
+
+	
+	private static int fillerIndex = 0;
+
+	
+	
+	 private static int  getMainMenuItemCount__wrappee__Base  () {
+		return 0;
+	}
+
+	
+	
+	public static int getMainMenuItemCount() {
+		return getMainMenuItemCount__wrappee__Base() + 1;
+	}
+
+	
+	 private static void  fillMainMenuItems__wrappee__Base  () {
+		fillerIndex = 0;
+	}
+
+	
+//	private static Scanner input = new Scanner(System.in);
+//	private static String[] mainMenuItems = getMainMenuItems();
+	
+	
+	
+	public static void fillMainMenuItems() {
+		fillMainMenuItems__wrappee__Base();
+		mainMenuItems[fillerIndex++] = "Exit";
+	}
+
+	
+	
+	 private static boolean  action__wrappee__Base  (String selection) {
+		return false;
+	}
+
+	
+
+	public static boolean action(String selection) {
+		boolean r = action__wrappee__Base(selection);
+		if(selection.equals("Exit")) {
+			System.exit(0);
+			return true;
+		} else {
+			return r;
+		}
+	}
+
+	
+	
+	public static void main(String[] args) {
+		fillMainMenuItems();
+		while(true) {
+			String selected = menu(mainMenuItems);
+			if(!action(selected)) {
+				System.out.println("That is not a valid option.");
+			}
+		}
+	}
+
+	
+	
+	public static int getInt() {
+		return input.nextInt();
+	}
+
+	
+	public static String menu(String[] items) {
+		for (int i = 0; i < items.length; i++) {
+			System.out.printf("%2d) %s%n", i, items[i]);
+		}
+		int answer = getInt();
+		while(answer < 0 || answer >= items.length) {
+			System.out.println("Invalid option.");
+			answer = getInt();
+		}
+		return items[answer];
+	}
+
+
+}

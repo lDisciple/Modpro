@@ -3,7 +3,13 @@
     <properties/>
     <struct>
         <and abstract="true" mandatory="true" name="Genga">
-            <feature name="Base"/>
+            <and mandatory="true" name="Base">
+                <or abstract="true" name="Programs">
+                    <feature name="Reverse"/>
+                    <feature name="Palindrome"/>
+                </or>
+                <feature mandatory="true" name="Exit"/>
+            </and>
         </and>
     </struct>
     <constraints/>
