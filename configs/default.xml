@@ -7,7 +7,7 @@
     <feature automatic="selected" manual="selected" name="Generators"/>
     <feature automatic="selected" name="Number"/>
     <feature automatic="selected" name="Seed"/>
-    <feature manual="selected" name="Unseeded"/>
-    <feature automatic="unselected" name="Seeded"/>
+    <feature automatic="unselected" name="Unseeded"/>
+    <feature manual="selected" name="Seeded"/>
     <feature automatic="selected" name="Exit"/>
 </configuration>

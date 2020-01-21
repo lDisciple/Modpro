@@ -1,4 +1,4 @@
-import java.util.LinkedList;
+//import java.util.LinkedList;
 import java.util.Scanner;
 
 /**
@@ -7,9 +7,7 @@ import java.util.Scanner;
 public class Main {
 //	private static Scanner input = new Scanner(System.in);
 //	private static String[] mainMenuItems = getMainMenuItems();
-	
-	
-	
+
 	public static void fillMainMenuItems() {
 		original();
 		mainMenuItems[fillerIndex++] = "Exit";
@@ -17,18 +15,18 @@ public class Main {
 
 	public static boolean action(String selection) {
 		boolean r = original(selection);
-		if(selection.equals("Exit")) {
+		if (selection.equals("Exit")) {
 			System.exit(0);
 			return true;
 		} else {
 			return r;
 		}
 	}
-	
+
 	public static int getMainMenuItemCount() {
 		return original() + 1;
 	}
-	
+
 //	public static void main(String[] args) {
 //		while(true) {
 //			String selected = menu(mainMenuItems);
@@ -58,5 +56,5 @@ public class Main {
 //		return items[answer];
 //	}
 //	
-	
+
 }

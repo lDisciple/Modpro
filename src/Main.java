@@ -1,4 +1,4 @@
-import java.util.LinkedList; 
+//import java.util.LinkedList;
 import java.util.Scanner; 
 
 /**
@@ -15,18 +15,19 @@ public   class  Main {
 	private static int fillerIndex = 0;
 
 	
-	
+
 	 private static int  getMainMenuItemCount__wrappee__Base  () {
 		return 0;
 	}
 
 	
-	
+
 	public static int getMainMenuItemCount() {
 		return getMainMenuItemCount__wrappee__Base() + 1;
 	}
 
 	
+
 	 private static void  fillMainMenuItems__wrappee__Base  () {
 		fillerIndex = 0;
 	}
@@ -34,16 +35,14 @@ public   class  Main {
 	
 //	private static Scanner input = new Scanner(System.in);
 //	private static String[] mainMenuItems = getMainMenuItems();
-	
-	
-	
+
 	public static void fillMainMenuItems() {
 		fillMainMenuItems__wrappee__Base();
 		mainMenuItems[fillerIndex++] = "Exit";
 	}
 
 	
-	
+
 	 private static boolean  action__wrappee__Base  (String selection) {
 		return false;
 	}
@@ -52,7 +51,7 @@ public   class  Main {
 
 	public static boolean action(String selection) {
 		boolean r = action__wrappee__Base(selection);
-		if(selection.equals("Exit")) {
+		if (selection.equals("Exit")) {
 			System.exit(0);
 			return true;
 		} else {
@@ -61,30 +60,31 @@ public   class  Main {
 	}
 
 	
-	
+
 	public static void main(String[] args) {
 		fillMainMenuItems();
-		while(true) {
+		while (true) {
 			String selected = menu(mainMenuItems);
-			if(!action(selected)) {
+			if (!action(selected)) {
 				System.out.println("That is not a valid option.");
 			}
 		}
 	}
 
 	
-	
+
 	public static int getInt() {
 		return input.nextInt();
 	}
 
 	
+
 	public static String menu(String[] items) {
 		for (int i = 0; i < items.length; i++) {
 			System.out.printf("%2d) %s%n", i, items[i]);
 		}
 		int answer = getInt();
-		while(answer < 0 || answer >= items.length) {
+		while (answer < 0 || answer >= items.length) {
 			System.out.println("Invalid option.");
 			answer = getInt();
 		}
