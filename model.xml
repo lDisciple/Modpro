@@ -7,6 +7,14 @@
                 <feature mandatory="true" name="Welcome"/>
                 <or abstract="true" mandatory="true" name="Programs">
                     <and abstract="true" name="Generators">
+                        <and mandatory="true" name="Number">
+                            <alt abstract="true" mandatory="true" name="Seed">
+                                <feature name="Unseeded"/>
+                                <feature name="Seeded"/>
+                            </alt>
+                        </and>
+                        <feature name="Filename"/>
+                        <feature name="Word"/>
                         <and name="String">
                             <or abstract="true" mandatory="true" name="Charset">
                                 <feature name="Alpha"/>
@@ -19,23 +27,11 @@
                         </and>
                         <feature name="Email"/>
                         <feature name="Credentials"/>
-                        <feature name="Filename"/>
-                        <feature name="Word"/>
-                        <and mandatory="true" name="Number">
-                            <alt abstract="true" mandatory="true" name="Seed">
-                                <feature name="Unseeded"/>
-                                <feature name="Seeded"/>
-                            </alt>
-                        </and>
                     </and>
-                    <feature name="Palindrome"/>
                     <feature name="Reverse"/>
                     <feature name="Error"/>
                 </or>
                 <and mandatory="true" name="Exit">
-                    <and name="Confirmation">
-                        <feature name="AnnoyingConfirmation"/>
-                    </and>
                     <and name="Greeting">
                         <alt abstract="true" mandatory="true" name="Tone">
                             <feature name="Spicy"/>
@@ -43,6 +39,9 @@
                             <feature name="Salty"/>
                             <feature name="Unseasoned"/>
                         </alt>
+                    </and>
+                    <and name="Confirmation">
+                        <feature name="AnnoyingConfirmation"/>
                     </and>
                 </and>
                 <or name="Dictionary">
