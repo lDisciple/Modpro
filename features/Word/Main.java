@@ -8,7 +8,10 @@ public class Main {
 		boolean r = original(selection);
 		if (selection.equals("Word")) {
 			// TODO: Do your stuff here
-			System.out.println("Word generation");
+			System.out.println("Word generation:");
+			String[] basics = getBasicList();
+			int index = genInt() % basics.length;
+			System.out.println(basics[index]);
 			return true;
 		} else {
 			return r;

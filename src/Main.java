@@ -1,10 +1,12 @@
 
 import java.util.Scanner; import java.util.Random; import java.io.BufferedReader; 
+import java.io.File; 
 import java.io.FileNotFoundException; 
 import java.io.FileReader; 
-import java.util.Arrays; 
+import java.io.IOException; 
+import java.nio.file.Files; import java.util.Arrays; 
 import java.util.Iterator; 
-import java.util.LinkedList; 
+import java.util.LinkedList; import java.util.ArrayList; 
 
 public   class  Main {
 	
@@ -117,7 +119,10 @@ public   class  Main {
 		boolean r = action__wrappee__Filename(selection);
 		if (selection.equals("Word")) {
 			// TODO: Do your stuff here
-			System.out.println("Word generation");
+			System.out.println("Word generation:");
+			String[] basics = getBasicList();
+			int index = genInt() % basics.length;
+			System.out.println(basics[index]);
 			return true;
 		} else {
 			return r;
@@ -140,7 +145,15 @@ public   class  Main {
 
 	
 	
-	private static void setup() {}
+	 private static void  setup__wrappee__Base  () {}
+
+	
+	
+	private static void setup() {
+		setup__wrappee__Base();
+		ANIMALS_DICT = readfile("src/animals.txt");
+		addToBasic(ANIMALS_DICT);
+	}
 
 	
 
@@ -256,14 +269,41 @@ public   class  Main {
 			for (Object o : lst) {
 				ret[c++] = o.toString();
 			}
-			System.out.println(Arrays.toString(ret));
+//			System.out.println(Arrays.toString(ret));
 			scnFile.close();
 			return ret;
-		} catch(FileNotFoundException e) {
+		} catch(IOException e) {
+			e.printStackTrace();
 			System.err.printf("Could not read file: %s%n", path);
 			System.exit(0);
 			return null;
 		}
+	}
+
+	
+	private static String[] BASIC = new String[0];
+
+	
+	
+	private static void addToBasic(String[] arr) {
+		String[] ret = new String[BASIC.length+arr.length];
+		System.arraycopy(BASIC, 0, ret, 0, BASIC.length);
+		System.arraycopy(arr, 0, ret, BASIC.length, arr.length);
+		BASIC = ret;
+	}
+
+	
+	private static String[] getBasicList() {
+		return BASIC;
+	}
+
+	
+	private static String[] ANIMALS_DICT;
+
+	
+	
+	private static String[] getAnimalList() {
+		return ANIMALS_DICT;
 	}
 
 
