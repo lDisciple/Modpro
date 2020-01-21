@@ -1,9 +1,8 @@
 import java.util.Random;
 
 public class Main {
-	private static void interactWithUserOnAPersonalLevel() {
+	private static void setup() {
 		original();
-		System.out.println("Choose a seed:");
 		random = new Random(getInt());
 	}
 }
