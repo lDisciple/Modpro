@@ -85,7 +85,12 @@
                 <var>Filename</var>
                 <conj>
                     <var>Extensions</var>
-                    <var>String</var>
+                    <conj>
+                        <var>String</var>
+                        <not>
+                            <var>NonPrintable</var>
+                        </not>
+                    </conj>
                 </conj>
             </imp>
         </rule>
