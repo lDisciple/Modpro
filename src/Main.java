@@ -22,7 +22,7 @@ public   class  Main {
 
 	
 
-	public static int getMainMenuItemCount() {
+	public static int getMainMenuItemCount() { // Copy-pasta
 		return getMainMenuItemCount__wrappee__Base() + 1;
 	}
 
@@ -33,12 +33,10 @@ public   class  Main {
 	}
 
 	
-//	private static Scanner input = new Scanner(System.in);
-//	private static String[] mainMenuItems = getMainMenuItems();
 
 	public static void fillMainMenuItems() {
 		fillMainMenuItems__wrappee__Base();
-		mainMenuItems[fillerIndex++] = "Exit";
+		mainMenuItems[fillerIndex++] = "Exit"; // Change name
 	}
 
 	
@@ -51,8 +49,10 @@ public   class  Main {
 
 	public static boolean action(String selection) {
 		boolean r = action__wrappee__Base(selection);
-		if (selection.equals("Exit")) {
-			System.exit(0);
+		if (selection.equals("Exit")) { // Change to right name
+			// Do your stuff here
+			exit();
+			// Stop doing
 			return true;
 		} else {
 			return r;
@@ -89,6 +89,12 @@ public   class  Main {
 			answer = getInt();
 		}
 		return items[answer];
+	}
+
+	
+	
+	public static void exit() {
+		System.exit(0);
 	}
 
 
