@@ -21,8 +21,11 @@ public class Main {
 	public static boolean action(String selection) {
 		return false;
 	}
+	
+	private static void setup() {}
 
 	public static void main(String[] args) {
+		setup();
 		fillMainMenuItems();
 		while (true) {
 			String selected = menu(mainMenuItems);
@@ -33,7 +36,17 @@ public class Main {
 	}
 
 	public static int getInt() {
-		return input.nextInt();
+		int option;
+		do {
+			String line = input.next();
+			option = -1;
+			try {
+				option = Integer.parseInt(line);
+			} catch(NumberFormatException e) {
+				System.out.println("Please give an integer.");
+			}
+		} while(option == -1);
+		return option;
 	}
 
 	public static String menu(String[] items) {
@@ -46,6 +59,10 @@ public class Main {
 			answer = getInt();
 		}
 		return items[answer];
+	}
+	
+	private static void close() {
+		input.close();
 	}
 
 }

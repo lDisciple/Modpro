@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+    <feature automatic="selected" name="Genga"/>
+    <feature automatic="selected" name="Base"/>
+    <feature automatic="selected" name="Welcome"/>
+    <feature automatic="selected" name="Programs"/>
+    <feature automatic="selected" manual="selected" name="Generators"/>
+    <feature automatic="selected" name="Number"/>
+    <feature automatic="selected" name="Seed"/>
+    <feature automatic="unselected" name="Unseeded"/>
+    <feature manual="selected" name="Seeded"/>
+    <feature automatic="selected" name="Exit"/>
+    <feature automatic="selected" manual="selected" name="Dictionary"/>
+    <feature automatic="selected" manual="selected" name="Basic"/>
+    <feature manual="selected" name="Animals"/>
+</configuration>
