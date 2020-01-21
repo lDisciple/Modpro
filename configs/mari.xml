@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+    <feature automatic="selected" name="Genga"/>
+    <feature automatic="selected" name="Base"/>
+    <feature automatic="selected" name="Welcome"/>
+    <feature automatic="selected" name="Programs"/>
+    <feature automatic="selected" name="Generators"/>
+    <feature automatic="selected" name="Number"/>
+    <feature automatic="selected" name="Seed"/>
+    <feature automatic="unselected" name="Unseeded"/>
+    <feature manual="selected" name="Seeded"/>
+    <feature manual="selected" name="Filename"/>
+    <feature manual="selected" name="Word"/>
+    <feature automatic="selected" name="String"/>
+    <feature automatic="selected" name="Charset"/>
+    <feature manual="selected" name="Numeric"/>
+    <feature automatic="unselected" name="NonPrintable"/>
+    <feature manual="selected" name="Reverse"/>
+    <feature automatic="selected" name="Exit"/>
+    <feature automatic="selected" manual="selected" name="Greeting"/>
+    <feature automatic="selected" name="Tone"/>
+    <feature automatic="unselected" name="Spicy"/>
+    <feature manual="selected" name="Sexy"/>
+    <feature automatic="unselected" name="Salty"/>
+    <feature automatic="unselected" name="Unseasoned"/>
+    <feature automatic="selected" name="Dictionary"/>
+    <feature automatic="selected" name="Basic"/>
+    <feature manual="selected" name="Animals"/>
+    <feature automatic="selected" name="Special"/>
+    <feature automatic="selected" name="Extensions"/>
+</configuration>
