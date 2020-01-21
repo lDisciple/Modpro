@@ -1,5 +1,5 @@
 //import java.util.LinkedList;
-import java.util.Scanner; 
+import java.util.Scanner; import java.util.Random; 
 
 /**
  * Main class file
@@ -22,8 +22,14 @@ public   class  Main {
 
 	
 
-	public static int getMainMenuItemCount() { // Copy-pasta
+	 private static int  getMainMenuItemCount__wrappee__Number  () { // Copy-pasta
 		return getMainMenuItemCount__wrappee__Base() + 1;
+	}
+
+	
+
+	public static int getMainMenuItemCount() { // Copy-pasta
+		return getMainMenuItemCount__wrappee__Number() + 1;
 	}
 
 	
@@ -33,9 +39,15 @@ public   class  Main {
 	}
 
 	
+	 private static void  fillMainMenuItems__wrappee__Number  () {
+		fillMainMenuItems__wrappee__Base();
+		mainMenuItems[fillerIndex++] = "Number Generator"; // Change name
+	}
+
+	
 
 	public static void fillMainMenuItems() {
-		fillMainMenuItems__wrappee__Base();
+		fillMainMenuItems__wrappee__Number();
 		mainMenuItems[fillerIndex++] = "Exit"; // Change name
 	}
 
@@ -46,9 +58,24 @@ public   class  Main {
 	}
 
 	
+	
+	 private static boolean  action__wrappee__Number  (String selection) {
+		boolean r = action__wrappee__Base(selection);
+		if (selection.equals("Number Generator")) { // Change to right name
+			// Do your stuff here
+			interactWithUserOnAPersonalLevel();
+			System.out.println(genInt());
+			// Stop doing
+			return true;
+		} else {
+			return r;
+		}
+	}
+
+	
 
 	public static boolean action(String selection) {
-		boolean r = action__wrappee__Base(selection);
+		boolean r = action__wrappee__Number(selection);
 		if (selection.equals("Exit")) { // Change to right name
 			// Do your stuff here
 			exit();
@@ -60,8 +87,13 @@ public   class  Main {
 	}
 
 	
+	
+	private static void setup() {}
+
+	
 
 	public static void main(String[] args) {
+		setup();
 		fillMainMenuItems();
 		while (true) {
 			String selected = menu(mainMenuItems);
@@ -89,6 +121,25 @@ public   class  Main {
 			answer = getInt();
 		}
 		return items[answer];
+	}
+
+	
+	private static Random random;
+
+	
+
+	public static int genInt() {
+		return random.nextInt();
+	}
+
+	
+	
+	 private static void  interactWithUserOnAPersonalLevel__wrappee__Number  () {}
+
+	
+	private static void interactWithUserOnAPersonalLevel() {
+		interactWithUserOnAPersonalLevel__wrappee__Number();
+		random = new Random();
 	}
 
 	

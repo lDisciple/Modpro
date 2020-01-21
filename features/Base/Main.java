@@ -21,8 +21,11 @@ public class Main {
 	public static boolean action(String selection) {
 		return false;
 	}
+	
+	private static void setup() {}
 
 	public static void main(String[] args) {
+		setup();
 		fillMainMenuItems();
 		while (true) {
 			String selected = menu(mainMenuItems);
