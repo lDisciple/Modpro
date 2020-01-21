@@ -1,27 +1,18 @@
-//import java.util.LinkedList;
 import java.util.Scanner;
-import java.util.Random;
-/**
- * Main class file
- */
+
 public class Main {
-	private static Random random;
+	private static String charset = "";
+
 	public static void fillMainMenuItems() {
 		original();
-		mainMenuItems[fillerIndex++] = "Number Generator"; // Change name
+		mainMenuItems[fillerIndex++] = "String Generator"; // Change name
 	}
 
-	public static int genInt() {
-		return random.nextInt();
-	}
-	
-
-	
 	public static boolean action(String selection) {
 		boolean r = original(selection);
-		if (selection.equals("Number Generator")) { // Change to right name
+		if (selection.equals("String Generator")) { // Change to right name
 			// Do your stuff here
-			System.out.println(genInt());
+			printStringFromCharset();
 			// Stop doing
 			return true;
 		} else {
@@ -32,4 +23,6 @@ public class Main {
 	public static int getMainMenuItemCount() { // Copy-pasta
 		return original() + 1;
 	}
+
+
 }
