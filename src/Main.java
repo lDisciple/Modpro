@@ -1,9 +1,11 @@
-//import java.util.LinkedList;
-import java.util.Scanner; import java.util.Random; 
 
-/**
- * Main class file
- */
+import java.util.Scanner; import java.util.Random; import java.io.BufferedReader; 
+import java.io.FileNotFoundException; 
+import java.io.FileReader; 
+import java.util.Arrays; 
+import java.util.Iterator; 
+import java.util.LinkedList; 
+
 public   class  Main {
 	
 	private static Scanner input = new Scanner(System.in);
@@ -28,8 +30,20 @@ public   class  Main {
 
 	
 
-	public static int getMainMenuItemCount() { // Copy-pasta
+	 private static int  getMainMenuItemCount__wrappee__Filename  () {
 		return getMainMenuItemCount__wrappee__Number() + 1;
+	}
+
+	
+
+	 private static int  getMainMenuItemCount__wrappee__Word  () {
+		return getMainMenuItemCount__wrappee__Filename() + 1;
+	}
+
+	
+
+	public static int getMainMenuItemCount() { // Copy-pasta
+		return getMainMenuItemCount__wrappee__Word() + 1;
 	}
 
 	
@@ -45,9 +59,21 @@ public   class  Main {
 	}
 
 	
+	 private static void  fillMainMenuItems__wrappee__Filename  () {
+		fillMainMenuItems__wrappee__Number();
+		mainMenuItems[fillerIndex++] = "Filename";
+	}
+
+	
+	 private static void  fillMainMenuItems__wrappee__Word  () {
+		fillMainMenuItems__wrappee__Filename();
+		mainMenuItems[fillerIndex++] = "Word";
+	}
+
+	
 
 	public static void fillMainMenuItems() {
-		fillMainMenuItems__wrappee__Number();
+		fillMainMenuItems__wrappee__Word();
 		mainMenuItems[fillerIndex++] = "Exit"; // Change name
 	}
 
@@ -74,8 +100,34 @@ public   class  Main {
 
 	
 
-	public static boolean action(String selection) {
+	 private static boolean  action__wrappee__Filename  (String selection) {
 		boolean r = action__wrappee__Number(selection);
+		if (selection.equals("Filename")) {
+			// TODO: Do your stuff here
+			System.out.println("Filename generation");
+			return true;
+		} else {
+			return r;
+		}
+	}
+
+	
+
+	 private static boolean  action__wrappee__Word  (String selection) {
+		boolean r = action__wrappee__Filename(selection);
+		if (selection.equals("Word")) {
+			// TODO: Do your stuff here
+			System.out.println("Word generation");
+			return true;
+		} else {
+			return r;
+		}
+	}
+
+	
+
+	public static boolean action(String selection) {
+		boolean r = action__wrappee__Word(selection);
 		if (selection.equals("Exit")) { // Change to right name
 			// Do your stuff here
 			exit();
@@ -92,7 +144,7 @@ public   class  Main {
 
 	
 
-	public static void main(String[] args) {
+	 private static void  main__wrappee__Base  (String[] args) {
 		setup();
 		fillMainMenuItems();
 		while (true) {
@@ -105,8 +157,25 @@ public   class  Main {
 
 	
 
+	public static void main(String[] args) {
+		System.out.println("Welcome to Genga!");
+		main__wrappee__Base(args);
+	}
+
+	
+
 	public static int getInt() {
-		return input.nextInt();
+		int option;
+		do {
+			String line = input.next();
+			option = -1;
+			try {
+				option = Integer.parseInt(line);
+			} catch(NumberFormatException e) {
+				System.out.println("Please give an integer.");
+			}
+		} while(option == -1);
+		return option;
 	}
 
 	
@@ -121,6 +190,12 @@ public   class  Main {
 			answer = getInt();
 		}
 		return items[answer];
+	}
+
+	
+	
+	private static void close() {
+		input.close();
 	}
 
 	
@@ -139,13 +214,56 @@ public   class  Main {
 	
 	private static void interactWithUserOnAPersonalLevel() {
 		interactWithUserOnAPersonalLevel__wrappee__Number();
-		random = new Random();
+		System.out.println("Choose a seed:");
+		random = new Random(getInt());
+	}
+
+	
+	
+	 private static void  exit__wrappee__Exit  () {
+		System.exit(0);
 	}
 
 	
 	
 	public static void exit() {
-		System.exit(0);
+		greetingMessage();
+		exit__wrappee__Exit();
+	}
+
+	
+	
+	 private static void  greetingMessage__wrappee__Greeting  () {
+		return;
+	}
+
+	
+	public static void greetingMessage() {
+		System.out.println("Sexy greeting");
+		greetingMessage__wrappee__Greeting();
+	}
+
+	
+	private static String[] readfile(String path) {
+		try {
+			Scanner scnFile = new Scanner(new FileReader(path));
+			LinkedList lst = new LinkedList();
+			while(scnFile.hasNextLine()) {
+				lst.add(scnFile.nextLine());
+			}
+			String[] ret = new String[lst.size()];
+			int c = 0;
+			for (Object o : lst) {
+				ret[c++] = o.toString();
+			}
+			System.out.println(Arrays.toString(ret));
+			scnFile.close();
+			return ret;
+		} catch(FileNotFoundException e) {
+			System.err.printf("Could not read file: %s%n", path);
+			System.exit(0);
+			return null;
+		}
 	}
 
 
