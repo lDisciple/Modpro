@@ -4,15 +4,111 @@
     <struct>
         <and abstract="true" mandatory="true" name="Genga">
             <and mandatory="true" name="Base">
-                <or abstract="true" name="Programs">
-                    <feature name="Reverse"/>
-                    <feature name="Palindrome"/>
+                <feature name="Welcome"/>
+                <or name="Dictionary">
+                    <or name="Basic">
+                        <feature name="Animals"/>
+                        <feature name="Names"/>
+                    </or>
+                    <or name="Special">
+                        <feature name="Extensions"/>
+                        <feature name="Domains"/>
+                    </or>
                 </or>
-                <feature mandatory="true" name="Exit"/>
+                <or abstract="true" mandatory="true" name="Programs">
+                    <and abstract="true" name="Generators">
+                        <and name="String">
+                            <or abstract="true" mandatory="true" name="Charset">
+                                <feature name="Alpha"/>
+                                <feature name="Numeric"/>
+                                <or name="Symbols">
+                                    <feature name="Printable"/>
+                                    <feature name="NonPrintable"/>
+                                </or>
+                            </or>
+                        </and>
+                        <feature name="Email"/>
+                        <feature name="Credentials"/>
+                        <feature name="Filename"/>
+                        <feature name="Word"/>
+                        <and name="Number">
+                            <or abstract="true" mandatory="true" name="Seed">
+                                <feature name="Unseeded"/>
+                                <feature name="Seeded"/>
+                            </or>
+                        </and>
+                    </and>
+                    <feature name="Palindrome"/>
+                    <feature name="Reverse"/>
+                    <feature name="Error"/>
+                </or>
+                <and mandatory="true" name="Exit">
+                    <and name="Confirmation">
+                        <feature name="AnnoyingConfirmation"/>
+                    </and>
+                    <and name="Greeting">
+                        <alt abstract="true" mandatory="true" name="Tone">
+                            <feature name="Spicy"/>
+                            <feature name="Kind"/>
+                        </alt>
+                    </and>
+                </and>
             </and>
         </and>
     </struct>
-    <constraints/>
+    <constraints>
+        <rule>
+            <imp>
+                <var>String</var>
+                <var>Number</var>
+            </imp>
+        </rule>
+        <rule>
+            <imp>
+                <var>Email</var>
+                <conj>
+                    <var>Number</var>
+                    <conj>
+                        <var>Domains</var>
+                        <var>Names</var>
+                    </conj>
+                </conj>
+            </imp>
+        </rule>
+        <rule>
+            <imp>
+                <var>Credentials</var>
+                <conj>
+                    <var>Email</var>
+                    <conj>
+                        <var>String</var>
+                        <var>Number</var>
+                    </conj>
+                </conj>
+            </imp>
+        </rule>
+        <rule>
+            <imp>
+                <var>Filename</var>
+                <conj>
+                    <var>Extensions</var>
+                    <conj>
+                        <var>String</var>
+                        <var>Number</var>
+                    </conj>
+                </conj>
+            </imp>
+        </rule>
+        <rule>
+            <imp>
+                <var>Word</var>
+                <conj>
+                    <var>Basic</var>
+                    <var>Number</var>
+                </conj>
+            </imp>
+        </rule>
+    </constraints>
     <calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
     <comments/>
     <featureOrder userDefined="false"/>
