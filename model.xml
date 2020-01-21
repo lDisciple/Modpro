@@ -5,16 +5,6 @@
         <and abstract="true" mandatory="true" name="Genga">
             <and mandatory="true" name="Base">
                 <feature mandatory="true" name="Welcome"/>
-                <or name="Dictionary">
-                    <or name="Basic">
-                        <feature name="Animals"/>
-                        <feature name="Names"/>
-                    </or>
-                    <or name="Special">
-                        <feature name="Extensions"/>
-                        <feature name="Domains"/>
-                    </or>
-                </or>
                 <or abstract="true" mandatory="true" name="Programs">
                     <and abstract="true" name="Generators">
                         <and name="String">
@@ -55,6 +45,16 @@
                         </alt>
                     </and>
                 </and>
+                <or name="Dictionary">
+                    <or name="Basic">
+                        <feature name="Animals"/>
+                        <feature name="Names"/>
+                    </or>
+                    <or name="Special">
+                        <feature name="Extensions"/>
+                        <feature name="Domains"/>
+                    </or>
+                </or>
             </and>
         </and>
     </struct>
