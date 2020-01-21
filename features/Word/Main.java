@@ -7,11 +7,9 @@ public class Main {
 	public static boolean action(String selection) {
 		boolean r = original(selection);
 		if (selection.equals("Word")) {
-			// TODO: Do your stuff here
-			System.out.println("Word generation:");
 			String[] basics = getBasicList();
-			int index = genInt() % basics.length;
-			System.out.println(basics[index]);
+			int index = Math.abs(genInt()) % basics.length;
+			System.out.println("Random word: " + basics[index]);
 			return true;
 		} else {
 			return r;

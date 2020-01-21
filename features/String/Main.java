@@ -12,7 +12,7 @@ public class Main {
 		boolean r = original(selection);
 		if (selection.equals("String Generator")) { // Change to right name
 			// Do your stuff here
-			printStringFromCharset();
+//			printStringFromCharset();
 			// Stop doing
 			return true;
 		} else {
@@ -23,6 +23,5 @@ public class Main {
 	public static int getMainMenuItemCount() { // Copy-pasta
 		return original() + 1;
 	}
-
 
 }

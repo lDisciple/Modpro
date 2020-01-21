@@ -44,8 +44,14 @@ public   class  Main {
 
 	
 
-	public static int getMainMenuItemCount() { // Copy-pasta
+	 private static int  getMainMenuItemCount__wrappee__String  () { // Copy-pasta
 		return getMainMenuItemCount__wrappee__Word() + 1;
+	}
+
+	
+
+	public static int getMainMenuItemCount() { // Copy-pasta
+		return getMainMenuItemCount__wrappee__String() + 1;
 	}
 
 	
@@ -74,8 +80,15 @@ public   class  Main {
 
 	
 
-	public static void fillMainMenuItems() {
+	 private static void  fillMainMenuItems__wrappee__String  () {
 		fillMainMenuItems__wrappee__Word();
+		mainMenuItems[fillerIndex++] = "String Generator"; // Change name
+	}
+
+	
+
+	public static void fillMainMenuItems() {
+		fillMainMenuItems__wrappee__String();
 		mainMenuItems[fillerIndex++] = "Exit"; // Change name
 	}
 
@@ -87,11 +100,12 @@ public   class  Main {
 
 	
 	
+
+	
 	 private static boolean  action__wrappee__Number  (String selection) {
 		boolean r = action__wrappee__Base(selection);
 		if (selection.equals("Number Generator")) { // Change to right name
 			// Do your stuff here
-			interactWithUserOnAPersonalLevel();
 			System.out.println(genInt());
 			// Stop doing
 			return true;
@@ -118,11 +132,23 @@ public   class  Main {
 	 private static boolean  action__wrappee__Word  (String selection) {
 		boolean r = action__wrappee__Filename(selection);
 		if (selection.equals("Word")) {
-			// TODO: Do your stuff here
-			System.out.println("Word generation:");
 			String[] basics = getBasicList();
-			int index = genInt() % basics.length;
-			System.out.println(basics[index]);
+			int index = Math.abs(genInt()) % basics.length;
+			System.out.println("Random word: " + basics[index]);
+			return true;
+		} else {
+			return r;
+		}
+	}
+
+	
+
+	 private static boolean  action__wrappee__String  (String selection) {
+		boolean r = action__wrappee__Word(selection);
+		if (selection.equals("String Generator")) { // Change to right name
+			// Do your stuff here
+//			printStringFromCharset();
+			// Stop doing
 			return true;
 		} else {
 			return r;
@@ -132,7 +158,7 @@ public   class  Main {
 	
 
 	public static boolean action(String selection) {
-		boolean r = action__wrappee__Word(selection);
+		boolean r = action__wrappee__String(selection);
 		if (selection.equals("Exit")) { // Change to right name
 			// Do your stuff here
 			exit();
@@ -148,11 +174,25 @@ public   class  Main {
 	 private static void  setup__wrappee__Base  () {}
 
 	
-	
-	private static void setup() {
+	 private static void  setup__wrappee__Seeded  () {
 		setup__wrappee__Base();
+		random = new Random(123);
+	}
+
+	
+	
+	 private static void  setup__wrappee__Animals  () {
+		setup__wrappee__Seeded();
 		ANIMALS_DICT = readfile("src/animals.txt");
 		addToBasic(ANIMALS_DICT);
+	}
+
+	
+	
+	private static void setup() {
+		setup__wrappee__Animals();
+		EXT_DICT = readfile("src/extensions.txt");
+		addToSpecial(EXT_DICT);
 	}
 
 	
@@ -221,15 +261,7 @@ public   class  Main {
 	}
 
 	
-	
-	 private static void  interactWithUserOnAPersonalLevel__wrappee__Number  () {}
-
-	
-	private static void interactWithUserOnAPersonalLevel() {
-		interactWithUserOnAPersonalLevel__wrappee__Number();
-		System.out.println("Choose a seed:");
-		random = new Random(getInt());
-	}
+	private static String charset = "";
 
 	
 	
@@ -281,20 +313,20 @@ public   class  Main {
 	}
 
 	
-	private static String[] BASIC = new String[0];
+	private static String[] BASIC_DICT = new String[0];
 
 	
 	
 	private static void addToBasic(String[] arr) {
-		String[] ret = new String[BASIC.length+arr.length];
-		System.arraycopy(BASIC, 0, ret, 0, BASIC.length);
-		System.arraycopy(arr, 0, ret, BASIC.length, arr.length);
-		BASIC = ret;
+		String[] ret = new String[BASIC_DICT.length+arr.length];
+		System.arraycopy(BASIC_DICT, 0, ret, 0, BASIC_DICT.length);
+		System.arraycopy(arr, 0, ret, BASIC_DICT.length, arr.length);
+		BASIC_DICT = ret;
 	}
 
 	
 	private static String[] getBasicList() {
-		return BASIC;
+		return BASIC_DICT;
 	}
 
 	
@@ -304,6 +336,32 @@ public   class  Main {
 	
 	private static String[] getAnimalList() {
 		return ANIMALS_DICT;
+	}
+
+	
+	private static String[] SPECIAL_DICT = new String[0];
+
+	
+	
+	private static void addToSpecial(String[] arr) {
+		String[] ret = new String[SPECIAL_DICT.length+arr.length];
+		System.arraycopy(SPECIAL_DICT, 0, ret, 0, SPECIAL_DICT.length);
+		System.arraycopy(arr, 0, ret, SPECIAL_DICT.length, arr.length);
+		SPECIAL_DICT = ret;
+	}
+
+	
+	private static String[] getSpecialList() {
+		return SPECIAL_DICT;
+	}
+
+	
+	private static String[] EXT_DICT;
+
+	
+	
+	private static String[] getExtensionList() {
+		return EXT_DICT;
 	}
 
 
