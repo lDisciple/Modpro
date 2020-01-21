@@ -4,7 +4,7 @@
     <struct>
         <and abstract="true" mandatory="true" name="Genga">
             <and mandatory="true" name="Base">
-                <feature name="Welcome"/>
+                <feature mandatory="true" name="Welcome"/>
                 <or name="Dictionary">
                     <or name="Basic">
                         <feature name="Animals"/>
@@ -31,11 +31,11 @@
                         <feature name="Credentials"/>
                         <feature name="Filename"/>
                         <feature name="Word"/>
-                        <and name="Number">
-                            <or abstract="true" mandatory="true" name="Seed">
+                        <and mandatory="true" name="Number">
+                            <alt abstract="true" mandatory="true" name="Seed">
                                 <feature name="Unseeded"/>
                                 <feature name="Seeded"/>
-                            </or>
+                            </alt>
                         </and>
                     </and>
                     <feature name="Palindrome"/>
@@ -49,7 +49,9 @@
                     <and name="Greeting">
                         <alt abstract="true" mandatory="true" name="Tone">
                             <feature name="Spicy"/>
-                            <feature name="Kind"/>
+                            <feature name="Sexy"/>
+                            <feature name="Salty"/>
+                            <feature name="Unseasoned"/>
                         </alt>
                     </and>
                 </and>
@@ -57,12 +59,6 @@
         </and>
     </struct>
     <constraints>
-        <rule>
-            <imp>
-                <var>String</var>
-                <var>Number</var>
-            </imp>
-        </rule>
         <rule>
             <imp>
                 <var>Email</var>
@@ -80,10 +76,7 @@
                 <var>Credentials</var>
                 <conj>
                     <var>Email</var>
-                    <conj>
-                        <var>String</var>
-                        <var>Number</var>
-                    </conj>
+                    <var>String</var>
                 </conj>
             </imp>
         </rule>
@@ -92,20 +85,14 @@
                 <var>Filename</var>
                 <conj>
                     <var>Extensions</var>
-                    <conj>
-                        <var>String</var>
-                        <var>Number</var>
-                    </conj>
+                    <var>String</var>
                 </conj>
             </imp>
         </rule>
         <rule>
             <imp>
                 <var>Word</var>
-                <conj>
-                    <var>Basic</var>
-                    <var>Number</var>
-                </conj>
+                <var>Basic</var>
             </imp>
         </rule>
     </constraints>
