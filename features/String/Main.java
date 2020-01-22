@@ -13,7 +13,7 @@ public class Main {
 		boolean r = original(selection);
 		if (selection.equals("String Generator")) { // Change to right name
 			// Do your stuff here
-			System.out.println(printStringFromCharset());
+			System.out.println(stringFromCharset());
 			// Stop doing
 			return true;
 		} else {
@@ -21,7 +21,7 @@ public class Main {
 		}
 	}
 
-	public static String printStringFromCharset() {
+	public static String stringFromCharset() {
 		String output = "";
 		for (int i = 0; i < 10; i++) {
 			output += charset.charAt(Math.abs(genInt()) % charset.length());

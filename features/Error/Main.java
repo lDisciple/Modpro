@@ -27,7 +27,7 @@ public class Main {
 			break;
 		case 1:
 			// Format
-			Integer.parseInt(printStringFromCharset());
+			Integer.parseInt(stringFromCharset());
 			break;
 		case 2:
 			// Invalid init
@@ -36,7 +36,7 @@ public class Main {
 			break;
 		case 3:
 			// Filenotfound
-			new File(printStringFromCharset());
+			new File(stringFromCharset());
 			break;
 		case 4:
 			// infrec
