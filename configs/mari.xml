@@ -20,8 +20,8 @@
     <feature automatic="selected" manual="selected" name="Greeting"/>
     <feature automatic="selected" name="Tone"/>
     <feature automatic="unselected" name="Spicy"/>
-    <feature manual="selected" name="Sexy"/>
-    <feature automatic="unselected" name="Salty"/>
+    <feature automatic="unselected" name="Sexy"/>
+    <feature manual="selected" name="Salty"/>
     <feature automatic="unselected" name="Unseasoned"/>
     <feature automatic="selected" name="Dictionary"/>
     <feature automatic="selected" name="Basic"/>

@@ -277,15 +277,8 @@ public   class  Main {
 	}
 
 	
-	
-	 private static void  greetingMessage__wrappee__Greeting  () {
-		return;
-	}
-
-	
-	public static void greetingMessage() {
-		System.out.println("Sexy greeting");
-		greetingMessage__wrappee__Greeting();
+	public static void greetingMessage  () {
+		System.out.println("Salty greeting");
 	}
 
 	
