@@ -13,7 +13,7 @@
     <feature manual="selected" name="Word"/>
     <feature automatic="selected" name="String"/>
     <feature automatic="selected" name="Charset"/>
-    <feature manual="selected" name="Numeric"/>
+    <feature manual="selected" name="Alpha"/>
     <feature automatic="unselected" name="NonPrintable"/>
     <feature manual="selected" name="Reverse"/>
     <feature automatic="selected" name="Exit"/>

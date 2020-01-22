@@ -8,15 +8,16 @@ public class Main {
 		original();
 		mainMenuItems[fillerIndex++] = "String Generator"; // Change name
 	}
-	
-	private static void setCharset() {}
-	
+
+	private static void setCharset() {
+	}
+
 	public static boolean action(String selection) {
 		boolean r = original(selection);
 		if (selection.equals("String Generator")) { // Change to right name
 			// Do your stuff here
 			setCharset();
-			printStringFromCharset();
+			System.out.println(printStringFromCharset());
 			// Stop doing
 			return true;
 		} else {
@@ -24,14 +25,14 @@ public class Main {
 		}
 	}
 
-	public static void printStringFromCharset() {
+	public static String printStringFromCharset() {
 		String output = "";
 		Random r = new Random();
 		for (int i = 0; i < 10; i++) {
 			output += charset.charAt(Math.abs(r.nextInt()) % charset.length());
 		}
+		return output;
 
-		System.out.println(output);
 	}
 
 	public static int getMainMenuItemCount() { // Copy-pasta

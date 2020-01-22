@@ -1,10 +1,14 @@
-//import java.util.LinkedList;
-import java.util.Scanner; 
-import java.util.Random; 
 
-/**
- * Main class file
- */
+import java.util.Scanner; 
+import java.util.Random; import java.io.BufferedReader; 
+import java.io.File; 
+import java.io.FileNotFoundException; 
+import java.io.FileReader; 
+import java.io.IOException; 
+import java.nio.file.Files; import java.util.Arrays; 
+import java.util.Iterator; 
+import java.util.LinkedList; import java.util.ArrayList; 
+
 public   class  Main {
 	
 	private static Scanner input = new Scanner(System.in);
@@ -29,8 +33,20 @@ public   class  Main {
 
 	
 
-	 private static int  getMainMenuItemCount__wrappee__String  () { // Copy-pasta
+	 private static int  getMainMenuItemCount__wrappee__Filename  () {
 		return getMainMenuItemCount__wrappee__Number() + 1;
+	}
+
+	
+
+	 private static int  getMainMenuItemCount__wrappee__Word  () {
+		return getMainMenuItemCount__wrappee__Filename() + 1;
+	}
+
+	
+
+	 private static int  getMainMenuItemCount__wrappee__String  () { // Copy-pasta
+		return getMainMenuItemCount__wrappee__Word() + 1;
 	}
 
 	
@@ -52,9 +68,21 @@ public   class  Main {
 	}
 
 	
+	 private static void  fillMainMenuItems__wrappee__Filename  () {
+		fillMainMenuItems__wrappee__Number();
+		mainMenuItems[fillerIndex++] = "Filename";
+	}
+
+	
+	 private static void  fillMainMenuItems__wrappee__Word  () {
+		fillMainMenuItems__wrappee__Filename();
+		mainMenuItems[fillerIndex++] = "Word";
+	}
+
+	
 
 	 private static void  fillMainMenuItems__wrappee__String  () {
-		fillMainMenuItems__wrappee__Number();
+		fillMainMenuItems__wrappee__Word();
 		mainMenuItems[fillerIndex++] = "String Generator"; // Change name
 	}
 
@@ -88,13 +116,42 @@ public   class  Main {
 	}
 
 	
-	
-	 private static boolean  action__wrappee__String  (String selection) {
+
+	 private static boolean  action__wrappee__Filename  (String selection) {
 		boolean r = action__wrappee__Number(selection);
+		if (selection.equals("Filename")) {
+			String name = printStringFromCharset();
+			String[] extension = getExtensionList();
+			int index = Math.abs(genInt()) % extension.length;
+			System.out.println("Filename generated: " + name + "." + extension[index]);
+			return true;
+		} else {
+			return r;
+		}
+	}
+
+	
+
+	 private static boolean  action__wrappee__Word  (String selection) {
+		boolean r = action__wrappee__Filename(selection);
+		if (selection.equals("Word")) {
+			String[] basics = getBasicList();
+			int index = Math.abs(genInt()) % basics.length;
+			System.out.println("Random word: " + basics[index]);
+			return true;
+		} else {
+			return r;
+		}
+	}
+
+	
+
+	 private static boolean  action__wrappee__String  (String selection) {
+		boolean r = action__wrappee__Word(selection);
 		if (selection.equals("String Generator")) { // Change to right name
 			// Do your stuff here
 			setCharset();
-			printStringFromCharset();
+			System.out.println(printStringFromCharset());
 			// Stop doing
 			return true;
 		} else {
@@ -121,9 +178,25 @@ public   class  Main {
 	 private static void  setup__wrappee__Base  () {}
 
 	
-	private static void setup() {
+	 private static void  setup__wrappee__Seeded  () {
 		setup__wrappee__Base();
-		random = new Random();
+		random = new Random(123);
+	}
+
+	
+	
+	 private static void  setup__wrappee__Animals  () {
+		setup__wrappee__Seeded();
+		ANIMALS_DICT = readfile("src/animals.txt");
+		addToBasic(ANIMALS_DICT);
+	}
+
+	
+	
+	private static void setup() {
+		setup__wrappee__Animals();
+		EXT_DICT = readfile("src/extensions.txt");
+		addToSpecial(EXT_DICT);
 	}
 
 	
@@ -195,7 +268,23 @@ public   class  Main {
 	private static String charset = "";
 
 	
-<<<<<<< HEAD
+	private static void setCharset  () {
+		charset += "abcdefghijklmnopqrstuvwxyz";
+	}
+
+	
+
+	public static String printStringFromCharset() {
+		String output = "";
+		Random r = new Random();
+		for (int i = 0; i < 10; i++) {
+			output += charset.charAt(Math.abs(r.nextInt()) % charset.length());
+		}
+		return output;
+
+	}
+
+	
 	
 	 private static void  exit__wrappee__Exit  () {
 		System.exit(0);
@@ -212,28 +301,81 @@ public   class  Main {
 	public static void greetingMessage  () {
 		System.out.println("Salty greeting");
 	}
-=======
-	private static void setCharset  () {
-		charset += "abcdefghijklmnopqrstuvwxyz";
-	}
 
 	
->>>>>>> a2d317e2293742a93d01332f967252dfe878876b
-
-	public static void printStringFromCharset() {
-		String output = "";
-		Random r = new Random();
-		for (int i = 0; i < 10; i++) {
-			output += charset.charAt(Math.abs(r.nextInt()) % charset.length());
+	private static String[] readfile(String path) {
+		try {
+			Scanner scnFile = new Scanner(new FileReader(path));
+			LinkedList lst = new LinkedList();
+			while(scnFile.hasNextLine()) {
+				lst.add(scnFile.nextLine());
+			}
+			String[] ret = new String[lst.size()];
+			int c = 0;
+			for (Object o : lst) {
+				ret[c++] = o.toString();
+			}
+//			System.out.println(Arrays.toString(ret));
+			scnFile.close();
+			return ret;
+		} catch(IOException e) {
+			e.printStackTrace();
+			System.err.printf("Could not read file: %s%n", path);
+			System.exit(0);
+			return null;
 		}
-
-		System.out.println(output);
 	}
 
 	
+	private static String[] BASIC_DICT = new String[0];
+
 	
-	public static void exit() {
-		System.exit(0);
+	
+	private static void addToBasic(String[] arr) {
+		String[] ret = new String[BASIC_DICT.length+arr.length];
+		System.arraycopy(BASIC_DICT, 0, ret, 0, BASIC_DICT.length);
+		System.arraycopy(arr, 0, ret, BASIC_DICT.length, arr.length);
+		BASIC_DICT = ret;
+	}
+
+	
+	private static String[] getBasicList() {
+		return BASIC_DICT;
+	}
+
+	
+	private static String[] ANIMALS_DICT;
+
+	
+	
+	private static String[] getAnimalList() {
+		return ANIMALS_DICT;
+	}
+
+	
+	private static String[] SPECIAL_DICT = new String[0];
+
+	
+	
+	private static void addToSpecial(String[] arr) {
+		String[] ret = new String[SPECIAL_DICT.length+arr.length];
+		System.arraycopy(SPECIAL_DICT, 0, ret, 0, SPECIAL_DICT.length);
+		System.arraycopy(arr, 0, ret, SPECIAL_DICT.length, arr.length);
+		SPECIAL_DICT = ret;
+	}
+
+	
+	private static String[] getSpecialList() {
+		return SPECIAL_DICT;
+	}
+
+	
+	private static String[] EXT_DICT;
+
+	
+	
+	private static String[] getExtensionList() {
+		return EXT_DICT;
 	}
 
 
