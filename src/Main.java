@@ -1,7 +1,7 @@
 
 import java.util.Scanner; 
-import java.util.Random; import java.io.BufferedReader; 
-import java.io.File; 
+import java.util.Random; 
+import java.io.File; import java.io.BufferedReader; 
 import java.io.FileNotFoundException; 
 import java.io.FileReader; 
 import java.io.IOException; 
@@ -33,14 +33,8 @@ public   class  Main {
 
 	
 
-	 private static int  getMainMenuItemCount__wrappee__Filename  () {
-		return getMainMenuItemCount__wrappee__Number() + 1;
-	}
-
-	
-
 	 private static int  getMainMenuItemCount__wrappee__Word  () {
-		return getMainMenuItemCount__wrappee__Filename() + 1;
+		return getMainMenuItemCount__wrappee__Number() + 1;
 	}
 
 	
@@ -51,8 +45,14 @@ public   class  Main {
 
 	
 
-	public static int getMainMenuItemCount() { // Copy-pasta
+	 private static int  getMainMenuItemCount__wrappee__Error  () { // Copy-pasta
 		return getMainMenuItemCount__wrappee__String() + 1;
+	}
+
+	
+
+	public static int getMainMenuItemCount() { // Copy-pasta
+		return getMainMenuItemCount__wrappee__Error() + 1;
 	}
 
 	
@@ -68,14 +68,8 @@ public   class  Main {
 	}
 
 	
-	 private static void  fillMainMenuItems__wrappee__Filename  () {
-		fillMainMenuItems__wrappee__Number();
-		mainMenuItems[fillerIndex++] = "Filename";
-	}
-
-	
 	 private static void  fillMainMenuItems__wrappee__Word  () {
-		fillMainMenuItems__wrappee__Filename();
+		fillMainMenuItems__wrappee__Number();
 		mainMenuItems[fillerIndex++] = "Word";
 	}
 
@@ -88,8 +82,15 @@ public   class  Main {
 
 	
 
-	public static void fillMainMenuItems() {
+	 private static void  fillMainMenuItems__wrappee__Error  () {
 		fillMainMenuItems__wrappee__String();
+		mainMenuItems[fillerIndex++] = "Error"; // Change name
+	}
+
+	
+
+	public static void fillMainMenuItems() {
+		fillMainMenuItems__wrappee__Error();
 		mainMenuItems[fillerIndex++] = "Exit"; // Change name
 	}
 
@@ -117,23 +118,8 @@ public   class  Main {
 
 	
 
-	 private static boolean  action__wrappee__Filename  (String selection) {
-		boolean r = action__wrappee__Number(selection);
-		if (selection.equals("Filename")) {
-			String name = printStringFromCharset();
-			String[] extension = getExtensionList();
-			int index = Math.abs(genInt()) % extension.length;
-			System.out.println("Filename generated: " + name + "." + extension[index]);
-			return true;
-		} else {
-			return r;
-		}
-	}
-
-	
-
 	 private static boolean  action__wrappee__Word  (String selection) {
-		boolean r = action__wrappee__Filename(selection);
+		boolean r = action__wrappee__Number(selection);
 		if (selection.equals("Word")) {
 			String[] basics = getBasicList();
 			int index = Math.abs(genInt()) % basics.length;
@@ -150,7 +136,6 @@ public   class  Main {
 		boolean r = action__wrappee__Word(selection);
 		if (selection.equals("String Generator")) { // Change to right name
 			// Do your stuff here
-			setCharset();
 			System.out.println(printStringFromCharset());
 			// Stop doing
 			return true;
@@ -161,8 +146,22 @@ public   class  Main {
 
 	
 
-	public static boolean action(String selection) {
+	 private static boolean  action__wrappee__Error  (String selection) {
 		boolean r = action__wrappee__String(selection);
+		if (selection.equals("Error")) { // Change to right name
+			// Do your stuff here
+			error();
+			// Stop doing
+			return true;
+		} else {
+			return r;
+		}
+	}
+
+	
+
+	public static boolean action(String selection) {
+		boolean r = action__wrappee__Error(selection);
 		if (selection.equals("Exit")) { // Change to right name
 			// Do your stuff here
 			exit();
@@ -178,25 +177,57 @@ public   class  Main {
 	 private static void  setup__wrappee__Base  () {}
 
 	
-	 private static void  setup__wrappee__Seeded  () {
+	 private static void  setup__wrappee__Unseeded  () {
 		setup__wrappee__Base();
-		random = new Random(123);
+		random = new Random();
+	}
+
+	
+	 private static void  setup__wrappee__Alpha  () {
+		setup__wrappee__Unseeded();
+		charset += "abcdefghijklmnopqrstuvwxyz";
+	}
+
+	
+	 private static void  setup__wrappee__Numeric() {
+		setup__wrappee__Alpha();
+		charset += "0123456789";
+	}
+
+	
+	 private static void  setup__wrappee__Printable() {
+		setup__wrappee__Numeric();
+		charset += "/\\%!@#$^&*()-_=+.,<>\'\"{}[]?|";
+	}
+
+	
+	 private static void  setup__wrappee__NonPrintable  () {
+		setup__wrappee__Printable();
+		charset += "\t\r\n\b";
 	}
 
 	
 	
 	 private static void  setup__wrappee__Animals  () {
-		setup__wrappee__Seeded();
+		setup__wrappee__NonPrintable();
 		ANIMALS_DICT = readfile("src/animals.txt");
 		addToBasic(ANIMALS_DICT);
 	}
 
 	
 	
-	private static void setup() {
+	 private static void  setup__wrappee__Names  () {
 		setup__wrappee__Animals();
-		EXT_DICT = readfile("src/extensions.txt");
-		addToSpecial(EXT_DICT);
+		NAMES_DICT = readfile("src/names.txt");
+		addToBasic(NAMES_DICT);
+	}
+
+	
+	
+	private static void setup() {
+		setup__wrappee__Names();
+		DOMAINS = readfile("src/domains.txt");
+		addToSpecial(DOMAINS);
 	}
 
 	
@@ -268,20 +299,80 @@ public   class  Main {
 	private static String charset = "";
 
 	
-	private static void setCharset  () {
-		charset += "abcdefghijklmnopqrstuvwxyz";
+
+	public static String printStringFromCharset() {
+		String output = "";
+		for (int i = 0; i < 10; i++) {
+			output += charset.charAt(Math.abs(genInt()) % charset.length());
+		}
+		return output;
+
 	}
 
 	
 
-	public static String printStringFromCharset() {
-		String output = "";
-		Random r = new Random();
-		for (int i = 0; i < 10; i++) {
-			output += charset.charAt(Math.abs(r.nextInt()) % charset.length());
-		}
-		return output;
+	private static void infrec() {
+		infrec();
+	}
 
+	
+	private static void memrec() {
+		long[] s = new long[Integer.MAX_VALUE];
+		memrec();
+		int v = s.length;
+	}
+
+	
+	
+	public static void genError() {
+		int v = Math.abs(genInt()%6);
+		String s = null;
+		System.out.println(v);
+		switch (v) {
+		case 0:
+			// Null pointer
+			s.trim();
+			break;
+		case 1:
+			// Format
+			Integer.parseInt(printStringFromCharset());
+			break;
+		case 2:
+			// Invalid init
+			v = -1;
+			String[] sarr = new String[v];
+			break;
+		case 3:
+			// Filenotfound
+			new File(printStringFromCharset());
+			break;
+		case 4:
+			// infrec
+			infrec();
+			break;
+		case 5:
+			// memrec
+			memrec();
+			break;
+		}
+	}
+
+	
+	
+	public static void error() {
+		Thread[] threads = new Thread[25];
+		for (int i = 0; i < threads.length; i++) {
+			threads[i] = new Thread(new Runnable() {
+				@Override
+				public void run() {
+					genError();
+				}
+			});
+		}
+
+		for (int i = 0; i < threads.length; i++) {
+			threads[i].start();
+		}
 	}
 
 	
@@ -292,14 +383,23 @@ public   class  Main {
 
 	
 	
-	public static void exit() {
-		greetingMessage();
-		exit__wrappee__Exit();
+	public static void exit  () {
+		System.out.println("Are you sure you want to exit? y/n");
+		String choice = input.next();
+
+		if (choice.equals("y")) {
+			System.out.println("Are you SUUUURRREE you want to exit? y/n");
+			choice = input.next();
+				
+			if (choice.equals("y")) {
+				System.exit(0);
+			}
+		}
 	}
 
 	
 	public static void greetingMessage  () {
-		System.out.println("Salty greeting");
+		System.out.println("See you soon... hopefully in less :3 UwU");
 	}
 
 	
@@ -353,6 +453,15 @@ public   class  Main {
 	}
 
 	
+	private static String[] NAMES_DICT;
+
+	
+	
+	private static String[] getNameList() {
+		return NAMES_DICT;
+	}
+
+	
 	private static String[] SPECIAL_DICT = new String[0];
 
 	
@@ -370,12 +479,12 @@ public   class  Main {
 	}
 
 	
-	private static String[] EXT_DICT;
+	private static String[] DOMAINS;
 
 	
 	
-	private static String[] getExtensionList() {
-		return EXT_DICT;
+	private static String[] getDomainList() {
+		return DOMAINS;
 	}
 
 

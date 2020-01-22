@@ -19,7 +19,7 @@
                             <or abstract="true" mandatory="true" name="Charset">
                                 <feature name="Alpha"/>
                                 <feature name="Numeric"/>
-                                <or name="Symbols">
+                                <or abstract="true" name="Symbols">
                                     <feature name="Printable"/>
                                     <feature name="NonPrintable"/>
                                 </or>
