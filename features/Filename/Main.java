@@ -7,7 +7,7 @@ public class Main {
 	public static boolean action(String selection) {
 		boolean r = original(selection);
 		if (selection.equals("Filename")) {
-			String name = printStringFromCharset();
+			String name = stringFromCharset();
 			String[] extension = getExtensionList();
 			int index = Math.abs(genInt()) % extension.length;
 			System.out.println("Filename generated: " + name + "." + extension[index]);
