@@ -12,7 +12,7 @@ public class Main {
 		String[] domain = getDomainList();
 		int domainIndex = Math.abs(genInt()) % domain.length;
 		int number = Math.abs(genInt()) % 100;		
-		System.out.println(name[nameIndex] + number + "@" + domain[domainIndex]);
+		System.out.println(name[nameIndex].toLowerCase() + number + "@" + domain[domainIndex]);
 	}
 
 	public static void fillMainMenuItems() {
