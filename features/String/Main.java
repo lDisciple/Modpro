@@ -12,6 +12,11 @@ public class Main {
 	private static void setCharset() {
 	}
 
+	private static void setup() {
+		original();
+		setCharset();
+	}
+
 	public static boolean action(String selection) {
 		boolean r = original(selection);
 		if (selection.equals("String Generator")) { // Change to right name
@@ -27,9 +32,8 @@ public class Main {
 
 	public static String printStringFromCharset() {
 		String output = "";
-		Random r = new Random();
 		for (int i = 0; i < 10; i++) {
-			output += charset.charAt(Math.abs(r.nextInt()) % charset.length());
+			output += charset.charAt(Math.abs(getInt()) % charset.length());
 		}
 		return output;
 

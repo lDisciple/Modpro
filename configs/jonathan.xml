@@ -7,10 +7,19 @@
     <feature automatic="selected" manual="selected" name="Generators"/>
     <feature automatic="selected" name="Number"/>
     <feature automatic="selected" name="Seed"/>
-    <feature automatic="unselected" name="Unseeded"/>
-    <feature manual="selected" name="Seeded"/>
+    <feature manual="selected" name="Unseeded"/>
+    <feature automatic="unselected" name="Seeded"/>
+    <feature automatic="selected" name="String"/>
+    <feature automatic="selected" name="Charset"/>
+    <feature manual="selected" name="Alpha"/>
+    <feature manual="selected" name="Numeric"/>
+    <feature manual="selected" name="Error"/>
     <feature automatic="selected" name="Exit"/>
     <feature automatic="selected" manual="selected" name="Dictionary"/>
     <feature automatic="selected" manual="selected" name="Basic"/>
     <feature manual="selected" name="Animals"/>
+    <feature manual="selected" name="Names"/>
+    <feature automatic="selected" manual="selected" name="Special"/>
+    <feature manual="selected" name="Extensions"/>
+    <feature manual="selected" name="Domains"/>
 </configuration>
