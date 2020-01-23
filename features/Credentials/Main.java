@@ -13,22 +13,20 @@ public class Main {
 
 	public static void fillMainMenuItems() {
 		original();
-		mainMenuItems[fillerIndex++] = "Credentials"; // Change name
+		mainMenuItems[fillerIndex++] = "Credentials Generator";
 	}
 
 	public static boolean action(String selection) {
 		boolean r = original(selection);
-		if (selection.equals("Credentials")) { // Change to right name
-			// Do your stuff here
+		if (selection.equals("Credentials Generator")) {
 			credentials();
-			// Stop doing
 			return true;
 		} else {
 			return r;
 		}
 	}
 
-	public static int getMainMenuItemCount() { // Copy-pasta
+	public static int getMainMenuItemCount() {
 		return original() + 1;
 	}
 

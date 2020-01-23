@@ -6,15 +6,13 @@ public class Main {
 
 	public static void fillMainMenuItems() {
 		original();
-		mainMenuItems[fillerIndex++] = "String Generator"; // Change name
+		mainMenuItems[fillerIndex++] = "String Generator";
 	}
 
 	public static boolean action(String selection) {
 		boolean r = original(selection);
-		if (selection.equals("String Generator")) { // Change to right name
-			// Do your stuff here
+		if (selection.equals("String Generator")) {
 			System.out.println(stringFromCharset());
-			// Stop doing
 			return true;
 		} else {
 			return r;
@@ -30,7 +28,7 @@ public class Main {
 
 	}
 
-	public static int getMainMenuItemCount() { // Copy-pasta
+	public static int getMainMenuItemCount() {
 		return original() + 1;
 	}
 

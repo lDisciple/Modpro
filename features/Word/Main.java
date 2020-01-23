@@ -1,7 +1,7 @@
 public class Main {
 	public static void fillMainMenuItems() {
 		original();
-		mainMenuItems[fillerIndex++] = "Word";
+		mainMenuItems[fillerIndex++] = "Word Generator";
 	}
 
 	public static boolean action(String selection) {

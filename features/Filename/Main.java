@@ -1,12 +1,12 @@
 public class Main {
 	public static void fillMainMenuItems() {
 		original();
-		mainMenuItems[fillerIndex++] = "Filename";
+		mainMenuItems[fillerIndex++] = "Filename Generator";
 	}
 
 	public static boolean action(String selection) {
 		boolean r = original(selection);
-		if (selection.equals("Filename")) {
+		if (selection.equals("Filename Generator")) {
 			String name = stringFromCharset();
 			String[] extension = getExtensionList();
 			int index = Math.abs(genInt()) % extension.length;
