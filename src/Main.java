@@ -33,8 +33,14 @@ public   class  Main {
 
 	
 
-	 private static int  getMainMenuItemCount__wrappee__Word  () {
+	 private static int  getMainMenuItemCount__wrappee__Filename  () {
 		return getMainMenuItemCount__wrappee__Number() + 1;
+	}
+
+	
+
+	 private static int  getMainMenuItemCount__wrappee__Word  () {
+		return getMainMenuItemCount__wrappee__Filename() + 1;
 	}
 
 	
@@ -68,8 +74,14 @@ public   class  Main {
 	}
 
 	
-	 private static void  fillMainMenuItems__wrappee__Word  () {
+	 private static void  fillMainMenuItems__wrappee__Filename  () {
 		fillMainMenuItems__wrappee__Number();
+		mainMenuItems[fillerIndex++] = "Filename";
+	}
+
+	
+	 private static void  fillMainMenuItems__wrappee__Word  () {
+		fillMainMenuItems__wrappee__Filename();
 		mainMenuItems[fillerIndex++] = "Word";
 	}
 
@@ -118,8 +130,23 @@ public   class  Main {
 
 	
 
-	 private static boolean  action__wrappee__Word  (String selection) {
+	 private static boolean  action__wrappee__Filename  (String selection) {
 		boolean r = action__wrappee__Number(selection);
+		if (selection.equals("Filename")) {
+			String name = stringFromCharset();
+			String[] extension = getExtensionList();
+			int index = Math.abs(genInt()) % extension.length;
+			System.out.println("Filename generated: " + name + "." + extension[index]);
+			return true;
+		} else {
+			return r;
+		}
+	}
+
+	
+
+	 private static boolean  action__wrappee__Word  (String selection) {
+		boolean r = action__wrappee__Filename(selection);
 		if (selection.equals("Word")) {
 			String[] basics = getBasicList();
 			int index = Math.abs(genInt()) % basics.length;
@@ -136,7 +163,7 @@ public   class  Main {
 		boolean r = action__wrappee__Word(selection);
 		if (selection.equals("String Generator")) { // Change to right name
 			// Do your stuff here
-			System.out.println(printStringFromCharset());
+			System.out.println(stringFromCharset());
 			// Stop doing
 			return true;
 		} else {
@@ -201,15 +228,9 @@ public   class  Main {
 	}
 
 	
-	 private static void  setup__wrappee__NonPrintable  () {
-		setup__wrappee__Printable();
-		charset += "\t\r\n\b";
-	}
-
-	
 	
 	 private static void  setup__wrappee__Animals  () {
-		setup__wrappee__NonPrintable();
+		setup__wrappee__Printable();
 		ANIMALS_DICT = readfile("src/animals.txt");
 		addToBasic(ANIMALS_DICT);
 	}
@@ -226,8 +247,8 @@ public   class  Main {
 	
 	private static void setup() {
 		setup__wrappee__Names();
-		DOMAINS = readfile("src/domains.txt");
-		addToSpecial(DOMAINS);
+		EXT_DICT = readfile("src/extensions.txt");
+		addToSpecial(EXT_DICT);
 	}
 
 	
@@ -300,7 +321,7 @@ public   class  Main {
 
 	
 
-	public static String printStringFromCharset() {
+	public static String stringFromCharset() {
 		String output = "";
 		for (int i = 0; i < 10; i++) {
 			output += charset.charAt(Math.abs(genInt()) % charset.length());
@@ -335,7 +356,7 @@ public   class  Main {
 			break;
 		case 1:
 			// Format
-			Integer.parseInt(printStringFromCharset());
+			Integer.parseInt(stringFromCharset());
 			break;
 		case 2:
 			// Invalid init
@@ -344,7 +365,7 @@ public   class  Main {
 			break;
 		case 3:
 			// Filenotfound
-			new File(printStringFromCharset());
+			new File(stringFromCharset());
 			break;
 		case 4:
 			// infrec
@@ -383,23 +404,14 @@ public   class  Main {
 
 	
 	
-	public static void exit  () {
-		System.out.println("Are you sure you want to exit? y/n");
-		String choice = input.next();
-
-		if (choice.equals("y")) {
-			System.out.println("Are you SUUUURRREE you want to exit? y/n");
-			choice = input.next();
-				
-			if (choice.equals("y")) {
-				System.exit(0);
-			}
-		}
+	public static void exit() {
+		greetingMessage();
+		exit__wrappee__Exit();
 	}
 
 	
 	public static void greetingMessage  () {
-		System.out.println("See you soon... hopefully in less :3 UwU");
+		System.out.println("Guess you couldn't handle the heat ;)");
 	}
 
 	
@@ -479,12 +491,12 @@ public   class  Main {
 	}
 
 	
-	private static String[] DOMAINS;
+	private static String[] EXT_DICT;
 
 	
 	
-	private static String[] getDomainList() {
-		return DOMAINS;
+	private static String[] getExtensionList() {
+		return EXT_DICT;
 	}
 
 
