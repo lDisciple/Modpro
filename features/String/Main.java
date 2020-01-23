@@ -1,6 +1,3 @@
-import java.util.Scanner;
-import java.util.Random;
-
 public class Main {
 	private static String charset = "";
 
@@ -12,7 +9,7 @@ public class Main {
 	public static boolean action(String selection) {
 		boolean r = original(selection);
 		if (selection.equals("String Generator")) {
-			System.out.println(stringFromCharset());
+			System.out.println("Generated String: " + stringFromCharset());
 			return true;
 		} else {
 			return r;

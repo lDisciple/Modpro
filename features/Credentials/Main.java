@@ -1,14 +1,7 @@
-//import java.util.LinkedList;
-import java.util.Scanner;
-
-/**
- * Main class file
- */
 public class Main {
 	
-	public static void credentials() {
-		email();
-		System.out.println(stringFromCharset());
+	public static String credentials() {
+		return "\nEmail: " + email() + "\nPassword: " + stringFromCharset();
 	}
 
 	public static void fillMainMenuItems() {
@@ -19,7 +12,7 @@ public class Main {
 	public static boolean action(String selection) {
 		boolean r = original(selection);
 		if (selection.equals("Credentials Generator")) {
-			credentials();
+			System.out.println("Generated Credentials: " + credentials());
 			return true;
 		} else {
 			return r;

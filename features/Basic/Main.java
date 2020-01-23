@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class Main {
 	private static String[] BASIC_DICT = new String[0];
 	

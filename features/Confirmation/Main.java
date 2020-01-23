@@ -1,8 +1,3 @@
-import java.util.Scanner;
-
-/**
- * Main class file
- */
 public class Main {
 
 	public static Boolean confirm() {

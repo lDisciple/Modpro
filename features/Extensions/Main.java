@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class Main {
 	private static String[] EXT_DICT;
 	

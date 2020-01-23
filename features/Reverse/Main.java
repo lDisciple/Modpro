@@ -1,37 +1,27 @@
-//import java.util.LinkedList;
-import java.util.Scanner;
-
-/**
- * Main class file
- */
 public class Main {
 	
-	public static void reverse() {
+	public static String reverse() {
 		System.out.println("Type in the string you want to reverse:");		
 		String s = input.next();		
-		String rev = new StringBuilder(s).reverse().toString();		
-		
-		System.out.println(rev);
+		return new StringBuilder(s).reverse().toString();		
 	}
 
 	public static void fillMainMenuItems() {
 		original();
-		mainMenuItems[fillerIndex++] = "Reverse"; // Change name
+		mainMenuItems[fillerIndex++] = "Reverse String";
 	}
 
 	public static boolean action(String selection) {
 		boolean r = original(selection);
-		if (selection.equals("Reverse")) { // Change to right name
-			// Do your stuff here
-			reverse();
-			// Stop doing
+		if (selection.equals("Reverse String")) {
+			System.out.println("Reversed String: " + reverse());
 			return true;
 		} else {
 			return r;
 		}
 	}
 
-	public static int getMainMenuItemCount() { // Copy-pasta
+	public static int getMainMenuItemCount() {
 		return original() + 1;
 	}
 

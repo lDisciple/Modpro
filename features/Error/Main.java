@@ -1,3 +1,4 @@
+
 //import java.util.LinkedList;
 import java.io.File;
 import java.util.Scanner;
@@ -10,16 +11,16 @@ public class Main {
 	private static void infrec() {
 		infrec();
 	}
+
 	private static void memrec() {
 		long[] s = new long[Integer.MAX_VALUE];
 		memrec();
 		int v = s.length;
 	}
-	
+
 	public static void genError() {
-		int v = Math.abs(genInt()%6);
+		int v = Math.abs(genInt() % 6);
 		String s = null;
-		System.out.println(v);
 		switch (v) {
 		case 0:
 			// Null pointer
@@ -48,7 +49,7 @@ public class Main {
 			break;
 		}
 	}
-	
+
 	public static void error() {
 		Thread[] threads = new Thread[25];
 		for (int i = 0; i < threads.length; i++) {
@@ -67,24 +68,21 @@ public class Main {
 
 	public static void fillMainMenuItems() {
 		original();
-		mainMenuItems[fillerIndex++] = "Error"; // Change name
+		mainMenuItems[fillerIndex++] = "Error Generator";
 	}
 
 	public static boolean action(String selection) {
 		boolean r = original(selection);
-		if (selection.equals("Error")) { // Change to right name
-			// Do your stuff here
-			error();
-			// Stop doing
+		if (selection.equals("Error Generator")) {
+			genError();
 			return true;
 		} else {
 			return r;
 		}
 	}
 
-	public static int getMainMenuItemCount() { // Copy-pasta
+	public static int getMainMenuItemCount() {
 		return original() + 1;
 	}
-
 
 }

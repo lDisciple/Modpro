@@ -6,7 +6,7 @@ public class Main {
 
 	public static boolean action(String selection) {
 		boolean r = original(selection);
-		if (selection.equals("Word")) {
+		if (selection.equals("Word Generator")) {
 			String[] basics = getBasicList();
 			int index = Math.abs(genInt()) % basics.length;
 			System.out.println("Random word: " + basics[index]);
